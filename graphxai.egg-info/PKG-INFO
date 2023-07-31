@@ -1,0 +1,5 @@
+Metadata-Version: 2.1
+Name: graphxai
+Version: 0.1
+Summary: algorithms and metrics for explaining graph neural networks
+License-File: LICENSE

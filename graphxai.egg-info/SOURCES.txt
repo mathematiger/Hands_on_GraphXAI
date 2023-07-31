@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+graphxai/__init__.py
+graphxai.egg-info/PKG-INFO
+graphxai.egg-info/SOURCES.txt
+graphxai.egg-info/dependency_links.txt
+graphxai.egg-info/not-zip-safe
+graphxai.egg-info/top_level.txt
