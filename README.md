@@ -36,7 +36,7 @@ You find the visualizations in the `content/plots_explainers` folder. Remark: Th
 
 Goal: Find the rules, after which the classes 0-3 are made up. Class 4 summarizes all nodes, which don't follow the rules for the other classes.
 
-Open by running the `./find_dataset.sh`. 
+Open by running the `./find_dataset.sh` file. 
 
 Settings:
 
