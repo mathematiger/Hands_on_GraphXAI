@@ -28,6 +28,22 @@ Settings:
 
 `explainers_to_test="['gnnex', 'gcam', 'subx', 'pgex']"` Choose a list if explainers here, which subgraph-explanations you want to visualize.
 
+You find the visualizations in the `content/plots_explainers` folder. Remark: This deletes itself each time the code is called.
+
+
 
 ## 2. Challenge
 
+Goal: Find the rules, after which the classes 0-3 are made up. Class 4 summarizes all nodes, which don't follow the rules for the other classes.
+
+Open by running the `./find_dataset.sh`. 
+
+Settings:
+
+1. `new_dataset="False"` Set for True, if a new dataset should be created, following the same rules. Then, also a new GNN is trained, which takes a bit of time.
+
+2. `label_to_explain=1` Set to any integer from 0 to 3 to retain explanations for this labels
+
+3. `explainers_to_test="['gnnex', 'gcam', 'subx', 'pgex']"` Choose a list if explainers here, which subgraph-explanations you want to visualize.
+
+You find the visualizations in the `content_fds/plots_explainers` folder. Remark: This deletes itself each time the code is called.
