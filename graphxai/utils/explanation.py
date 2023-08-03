@@ -510,7 +510,6 @@ class Explanation:
 
                 edge_heat = torch.zeros(len(edge_list))
                 #edge_heat = torch.zeros(whole_edge_index.shape[1])
-                print(514, 'edges in Explanation:', positive_edges)
                 for e in positive_edges:
                     #e = positive_edges[i]
                     # Must find index, which is not very efficient

@@ -69,7 +69,7 @@ else:
     with open("content/datasets_ShapeGGen/datasets_"+str(dataset_of_choice)+".pickle", "rb") as file:
         dataset = pickle.load(file)
 
-
+print(72, dataset.edge_index)
 
 #plt.figure(figsize = (20, 15))
 #dataset.visualize(show = True, shape_label = True)

@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import os
 import random as rnd
 from torch_geometric.nn import SAGEConv, Linear, GCNConv
+import numpy as np
 
 
 def count_unique_indices(edge_pairs):
@@ -19,11 +20,15 @@ def count_unique_indices(edge_pairs):
     unique_indices = list(set(unique_indices))
     return len(unique_indices)
 
-def create_graph_from_pairs(edge_pairs):
+def create_graph_from_pairs(edge_pairs, list_features):
     unique_indices = count_unique_indices(edge_pairs)
     edge_pairs = torch.tensor(edge_pairs, dtype=torch.long).t()
     edge_index = torch.stack([edge_pairs[0], edge_pairs[1]], dim=0)
-    node_features = torch.ones(unique_indices, 1)
+    node_features = torch.ones(unique_indices, 2)
+    features_list = node_features.tolist()
+    for i in range(len(features_list)):
+        features_list[i] = [list_features[i] for _ in range(2)]
+    features = torch.tensor(features_list, dtype = torch.float)
     edges_tensor = edge_index
     list1 = edges_tensor[0, :].tolist()
     list2 = edges_tensor[1, :].tolist()
@@ -38,7 +43,7 @@ def create_graph_from_pairs(edge_pairs):
     sorted_list1, sorted_list2 = zip(*sorted_lists)
     edges_tensor =  torch.tensor([sorted_list1, sorted_list2])
     edge_index = edges_tensor
-    data = Data(x=node_features, edge_index=edge_index)
+    data = Data(x=features, edge_index=edge_index)
     data.num_classes = 2
     return data
 
@@ -129,6 +134,8 @@ def build_dataset(num_non_motif_nodes, num_motifs):
     graph = dataset.get_graph()
     graph = fill_all_edges(graph)
     graph = add_edges_to_motifs(graph)
+    #adjust features: same as the label
+    old_labels = graph.y.tolist()
     graph = change_label_3_2_to_1(graph)
     #add train, validation, test dataset !
     N = len(graph.y.tolist())
@@ -149,59 +156,69 @@ def build_dataset(num_non_motif_nodes, num_motifs):
     graph.val_mask = val_mask
     graph.test_mask = test_mask
     graph.num_classes = 2
-    graph.x =  2 * torch.rand(N, 1)
-    #change features in motif to 1
+    '''    
+    graph.x =  torch.rand(N, 1)
     list_nodes_in_motif = []
-    for _ in range(len(graph.y.tolist())):
-        if graph.y.tolist()[_] == 1:
+    
+    for _ in range(len(old_labels)):
+        if graph.y.tolist()[_] == True:
             list_nodes_in_motif.append(graph.y.tolist()[_])
-    graph.x[list_nodes_in_motif] = 1
+    graph.x[list_nodes_in_motif] = 3.0
+    '''
+    number_features = 2
+    features = np.ones((N, number_features))
+    features_list = features.tolist()
+    for _ in range(len(features_list)):
+        #features_list[_] = [2.0*rnd.random()+1.0 for _ in range(number_features)]
+        features_list[_] = [0 for _ in range(number_features)]
+        if old_labels[_] == 1:
+            features_list[_] = [1.0 for _ in range(number_features)]
+        if old_labels[_] == 2:
+            features_list[_] = [2.0 for _ in range(number_features)]
+        if old_labels[_] == 3:
+            features_list[_] = [3.0 for _ in range(number_features)]
+    features = torch.tensor(features_list, dtype = torch.float)
+    graph.x = features
+    #graph.x = torch.tensor(features, dtype=torch.float)
     return graph
 
 
-def test_created_dataset(data, model):
-    model.eval()
-    pred = model(data.x, data.edge_index)
-    print(pred)
-
+def build_motif_hetero(graph):
+    
+    return hgraph
 
 
 class GNN(torch.nn.Module):
     def __init__(self, in_channels, hidden_channels, out_channels, num_layers):
         super().__init__()
-        self.gcn1 = GCNConv(in_channels, hidden_channels)
-        self.conv1 = SAGEConv((-1, -1), hidden_channels, dropout = 0.5, aggregation = 'lstm')
-        self.conv2 = SAGEConv((-1, -1), hidden_channels, dropout = 0.5, aggregation = 'lstm')
-        #self.conv4 = SAGEConv((-1, -1), hidden_channels, dropout = 0.3)
+        self.conv1 = SAGEConv(in_channels, hidden_channels, dropout = 0.5)
+        self.conv2 = SAGEConv(hidden_channels, hidden_channels, dropout = 0.5)
+        self.conv3 = SAGEConv(hidden_channels, hidden_channels, dropout = 0.3)
+        self.conv4 = SAGEConv(hidden_channels, hidden_channels, dropout = 0.3)
         self.lin = torch.nn.Linear(hidden_channels, out_channels)
     def forward(self, x, edge_index):
         x = self.conv1(x, edge_index)
         x = torch.relu(x)
         x = self.conv2(x, edge_index)
         x = torch.relu(x)
+        x = self.conv3(x, edge_index)
+        x = torch.relu(x)
         x = self.lin(x)
         return x
 
-class GSAGE_2layer(torch.nn.Module):
-    def __init__(self, in_channels, hidden_channels, out_channels, num_layers):
-        super(GSAGE_2layer, self).__init__()
-        self.gsage1 = SAGEConv(in_channels, hidden_channels, normalize = True)
-        self.batchnorm1 = BatchNorm(hidden_channels)
-        self.gsage2 = SAGEConv(hidden_channels, hidden_channels, normalize = True)
-        self.batchnorm2 = BatchNorm(hidden_channels)
-        self.gsage3 = SAGEConv(hidden_channels, out_channels)
 
-    def forward(self, x, edge_index):
-        x = self.gsage1(x, edge_index)
-        #x = self.batchnorm1(x)
-        x = x.relu()
-        x = self.gsage3(x, edge_index)
-        return x
+
+def test_created_dataset(data, model):
+    model.eval()
+    pred = round(model(data.x, data.edge_index)[0,0].item(), 2)
+    pred = model(data.x, data.edge_index)
+    feedback_class_1 = [round(x[1].item(),2) for x in pred]
+    sum_feedback_1 = sum(feedback_class_1)
+    print('Score on the own Dataset for each node: ', feedback_class_1)
+    print('Total Score of own Dataset: ', sum_feedback_1)
 
 
 
-
-    
 
 
 
