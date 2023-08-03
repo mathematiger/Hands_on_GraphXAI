@@ -15,6 +15,7 @@ This tutorial consists of 3 parts:
 
 1. Use the `requirements.txt` file, to create a virtual python 3.8 environment
 
+2. For using the provided Jupyterhub: you may need to run `chmod +x find_motif.sh` for every shell to obtain permission using them.
 
 ## 1. Exploring Explainers
 
