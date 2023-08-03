@@ -16,7 +16,7 @@ This tutorial consists of 3 parts:
 1. Use the `requirements.txt` file, to create a virtual python 3.8 environment
 
 
-## 1. Challenge
+## 1. Exploring Explainers
 
 Run the ` ./run_explainers.sh` file, to see explanations for 1 out of 10 datasets for different explainers.
 
@@ -32,7 +32,7 @@ You find the visualizations in the `content/plots_explainers` folder. Remark: Th
 
 
 
-## 2. Challenge
+## 2. Challenge: Find a logical explanation for each class.
 
 Goal: Find the rules, after which the classes 0-3 are made up. Class 4 summarizes all nodes, which don't follow the rules for the other classes.
 
@@ -47,3 +47,18 @@ Settings:
 3. `explainers_to_test="['gnnex', 'gcam', 'subx', 'pgex']"` Choose a list if explainers here, which subgraph-explanations you want to visualize.
 
 You find the visualizations in the `content_fds/plots_explainers` folder. Remark: This deletes itself each time the code is called.
+
+
+## 3. Challenge: Generate the Input-Data, which maximize the GNN
+
+Goal: For a pre-trained GNN, create input-data, which maximize the GNN. The GNN learned to classify nodes, whether they are in a particular motif or not, so finding this motif would be a first step.
+
+To start, run `./find_motif.sh`
+
+How to create input-data:
+
+1. Edges: in the list `own_graph`, add edges between node-ids to the list as pairs. E.g., the list `[(0,1), (1,2)]` created a graph with three nodes and two (undirected) edges. Please ensure, that you use node-ids consecutively, and not jump over an integer (e.g. `[(0,1), (1,3)]` would be wrong). Please do not create more than 6 nodes.
+
+2. Node-Features: Each node has 1 feature, which can be set in the list `own_features`. In the motif, nodes have features in `{1,2,3}` (but you can use any features you want). The first element will set the node-feature for the node with id 0, the second element the node-feature for the node with id 1, etc. Please ensure, that you choose a feature for each created node.
+
+Competition: The GNN gives feedback for a node being in the motif as a real number. This feedback is summed up and the person wins, who's graph gives the highest feedback.
