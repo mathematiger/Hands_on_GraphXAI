@@ -51,7 +51,8 @@ You find the visualizations in the `content_fds/plots_explainers` folder. Remark
 
 ## 3. Challenge: Generate the Input-Data, which maximize the GNN
 
-Goal: For a pre-trained GNN, create input-data, which maximize the GNN. The GNN learned to classify nodes, whether they are in a particular motif or not, so finding this motif would be a first step.
+#### Main Goal: For a pre-trained GNN, create input-data, which maximize the GNN. 
+#### Intermediate Goal: The GNN learned to classify nodes, whether they are in a particular motif or not. Find the motif would be a first step towards the main goal.
 
 To start, run `./find_motif.sh`
 
