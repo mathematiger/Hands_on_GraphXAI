@@ -50,6 +50,13 @@ Settings:
 You find the visualizations in the `content_fds/plots_explainers` folder. Remark: This deletes itself each time the code is called.
 
 
+#### Further TODOS: 
+
+1. Currently, we don't have a well-trained GNN for this Dataset; maybe make some adjustments on the data to obtain better results.
+
+2. It would be perfect, if we could also look at the features and predicted labels of the surrounding nodes. Maybe generate a small table summarizing this information.
+
+
 ## 3. Challenge: Generate the Input-Data, which maximize the GNN
 
 #### Main Goal: For a pre-trained GNN, create input-data, which maximize the GNN. 
