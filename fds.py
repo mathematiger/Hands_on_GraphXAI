@@ -63,7 +63,7 @@ elif num_layers_gnn == 3:
         model.load_state_dict(torch.load(path+'model'+str(num_layers_gnn)))
 elif num_layers_gnn == 2:
     model = GNN_GCN_2(in_channels=2, hidden_channels=64, out_channels=data.num_classes, num_layers = num_layers_gnn)
-    optimizer = torch.optim.Adam(model.parameters(), lr = 0.002, weight_decay = 0.00015)
+    optimizer = torch.optim.Adam(model.parameters(), lr = 0.001, weight_decay = 0.001)
     criterion = torch.nn.CrossEntropyLoss()
     if new_dataset == True:
         for _ in range(900):

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-new_dataset="False"  #creates a new dataset of the same form and trains a new GNN ontop
+new_dataset="True"  #creates a new dataset of the same form and trains a new GNN ontop
 label_to_explain="1"  #some label from 0-3; label 4 summarizes all "other" nodes
 explainers_to_test="['gnnex', 'gbp']" #all explainers to test: 
 layers_of_gnn="2"   # at least 2, at most 4.

@@ -20,7 +20,7 @@ def create_dataset(max_dist):
     g = nx.erdos_renyi_graph(1000, 0.004, directed=True)
     N = len(g.nodes())
     labels = [0 for _ in range(N)]
-    infected_nodes = rnd.sample(g.nodes(), 80)
+    infected_nodes = rnd.sample(g.nodes(), 60)
     #alternate way to get node labels
     if max_dist == 1:
         for _ in range(N):
@@ -140,19 +140,23 @@ class GNN_GCN_2(torch.nn.Module):
     '''
     def __init__(self, in_channels, hidden_channels, out_channels, num_layers):
         super().__init__()
-        self.mlp_gin1 = torch.nn.Linear(in_channels, hidden_channels)
+        self.mlp_gin1 = torch.nn.Linear(in_channels, hidden_channels, bias = True)
         self.gin1 = GINConv(self.mlp_gin1)
         self.mlp_gin2 = torch.nn.Linear(hidden_channels, out_channels)
         self.gin2 = GINConv(self.mlp_gin2)
         self.mlp_gin3 = torch.nn.Linear(hidden_channels, out_channels)
         self.gin3 = GINConv(self.mlp_gin3)
+        self.conv1 = GCNConv(in_channels, hidden_channels, improved = True, add_selve_loops = True, bias = True, dropout = 0.1)
+        self.conv2 = GCNConv(hidden_channels, out_channels, improved = True, add_selve_loops = True, bias = False, dropout = 0.1)
+        self.conv3 = GCNConv(hidden_channels, out_channels, improved = True, add_selve_loops = True, bias = False, dropout = 0.1)
+        self.conv4 = GCNConv(hidden_channels, hidden_channels)
 
     def forward(self, x, edge_index):
         # NOTE: our provided testing function assumes no softmax
         #   output from the forward call.
-        x = self.gin1(x, edge_index)
+        x = self.conv1(x, edge_index)
         x = x.relu()
-        x = self.gin2(x, edge_index)
+        x = self.conv2(x, edge_index)
         #x = x.relu()
         #x = self.conv3(x, edge_index)
         return x

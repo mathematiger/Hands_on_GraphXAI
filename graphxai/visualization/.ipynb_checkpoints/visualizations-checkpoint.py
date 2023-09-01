@@ -162,7 +162,6 @@ def visualize_subgraph_explanation(edge_index: torch.Tensor, node_weights: list 
     G1 = to_networkx(data, to_undirected=True, remove_self_loops=True)
     # G, node_map = to_networkx_conv(data, to_undirected=True, remove_self_loops=True, get_map = True)
     G = to_networkx_conv(data, to_undirected=True, remove_self_loops=True, get_map = False)
-    print('G.nodes', G.nodes)
     # rev_map = {v:k for k, v in node_map.items()}
 
     # node_idx = node_map[node_idx] if node_idx is not None else None
@@ -419,7 +418,6 @@ def parse_GNNLRP_explanations(ret_tuple, edge_index, label_idx,
 
     # Now combine all incoming edge scores for nodes:
     node_scores = [sum([abs(xi) for xi in x]) for x in node_map]
-    print('len node_scores', len(node_scores))
 
     return node_scores, edge_scores
 

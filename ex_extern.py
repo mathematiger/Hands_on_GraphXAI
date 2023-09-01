@@ -43,7 +43,6 @@ def save_dataset_to_file(data, path):
 
 
 def delete_all_files_in_folder(folder_path):
-    print(folder_path)
     try:
         # Get a list of all files in the folder
         file_list = os.listdir(folder_path)
@@ -53,8 +52,6 @@ def delete_all_files_in_folder(folder_path):
             file_path = os.path.join(folder_path, filename)
             if os.path.isfile(file_path):
                 os.remove(file_path)
-                print(f"Deleted: {file_path}")
-
         print("All files in the folder", folder_path,"have been deleted.")
     except Exception as e:
         print(f"Error occurred: {e}")
