@@ -17,6 +17,18 @@ This tutorial consists of 3 parts:
 
 2. For using the provided Jupyterhub: you may need to run `chmod +x find_motif.sh` for every shell to obtain permission using them.
 
+## Using the Virtual Machine:
+It is possible to use the virtual machine, set up at `http://131.234.28.100/jupyter` for this workshop. 
+Username: `upb` Password: `UPBGAIN23`
+
+Follow the following steps, in order that everybody can use the VM:
+
+1. Navigate to the folder `/Documents/GraphXAI/`
+2. Copy the folder `Hands_on_GraphXAI` and paste it with an unique name (e.g. count the neighbors to your right and in front of you and add these numbers respectively to the foldername)
+3. Open a new terminal and activate the virtual environment `source hot/bin/activate`
+4. Change directory to your created folder, e.g. to `cd Documents/GraphXAI/Hands_on_GraphXAI_34`
+5. Continue with the steps beneath.
+
 ## 1. Exploring Explainers
 
 Run the ` ./run_explainers.sh` file, to see explanations for 1 out of 10 datasets for different explainers.
