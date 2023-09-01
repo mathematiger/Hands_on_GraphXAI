@@ -1,5 +1,5 @@
 # Hands_on_GraphXAI
-A hands-on tutorial on explainability of graph neural networks
+A hands-on tutorial on explainability of graph neural networks. The code is mostly based on `https://github.com/mims-harvard/GraphXAI`.
 
 ## Overview
 
