@@ -47,6 +47,8 @@ You find the visualizations in the `content/plots_explainers` folder. Remark: Th
 
 ## 2. Challenge: Find a logical explanation for each class.
 
+!!! Here we have a badly trained GNN, hence our explainers are pretty useless.
+
 Goal: Find the rules, after which the classes 0-3 are made up. Class 4 summarizes all nodes, which don't follow the rules for the other classes.
 
 Open by running the `./find_dataset.sh` file. 
@@ -60,13 +62,6 @@ Settings:
 3. `explainers_to_test="['gnnex', 'gcam', 'subx', 'pgex']"` Choose a list if explainers here, which subgraph-explanations you want to visualize.
 
 You find the visualizations in the `content_fds/plots_explainers` folder. Remark: This deletes itself each time the code is called.
-
-
-#### Further TODOS: 
-
-1. Currently, we don't have a well-trained GNN for this Dataset; maybe make some adjustments on the data to obtain better results.
-
-2. It would be perfect, if we could also look at the features and predicted labels of the surrounding nodes. Maybe generate a small table summarizing this information.
 
 
 ## 3. Challenge: Generate the Input-Data, which maximize the GNN
@@ -83,3 +78,15 @@ How to create input-data:
 2. Node-Features: Each node has 1 feature, which can be set in the list `own_features`. In the motif, nodes have features in `{1,2,3}` (but you can use any features you want). The first element will set the node-feature for the node with id 0, the second element the node-feature for the node with id 1, etc. Please ensure, that you choose a feature for each created node.
 
 Competition: The GNN gives feedback for a node being in the motif as a real number. This feedback is summed up and the person wins, who's graph gives the highest feedback.
+
+## 4. Challenge: Explore Class Expressions to find graphs of high fidelity for a heterogeneous BAShapes (Houses) Dataset
+
+Caution: Here you need to activate a new virtual environment, called `hothetero` in the VM.
+
+To start, run `run_ce_expl.sh`, which links to the code on 'ce_gain.py'.
+
+This code uses a dataset, which is a heterogeneous version of the BAShapes House dataset. Nodetypes are `'1'`, `'2'`, `'3'` for nodes in the house motifs from bottom to top and `0` for other nodes. All edgetypes are `'to'`
+
+Here, the aim is to create a class expression, which uses logical AND, ClassExpression, and ObjectProperty. This means, you can create instances of a class and connect these instances by edges (a.k.a. object properties). This is done in a tree-like format as a list `[class, [child1], [child2]]`. The features of all nodes are set to `1`, just like in the original dataset.
+
+If you want this to be a competition, try to find a CE which creates a graph which maximizes the fidelity on the dataset.
