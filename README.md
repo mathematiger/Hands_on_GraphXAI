@@ -70,3 +70,5 @@ This code uses a dataset, which is a heterogeneous version of the BAShapes House
 Here, the aim is to create a class expression, which uses logical AND, ClassExpression, and ObjectProperty. This means, you can create instances of a class and connect these instances by edges (a.k.a. object properties). This is done in a tree-like format as a list `[class, [child1], [child2]]`. The features of all nodes are set to `1`, just like in the original dataset. Keep attention, that you write the entries as strings, i.e. write `'1'` for class 1, instead of `1`.
 
 If you want this to be a competition, try to find a CE which creates a graph which maximizes the fidelity on the dataset.
+
+#### Research Question: Do CEs which lead to graphs with higher GNN-output also have a higher fidelity?
