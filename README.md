@@ -7,9 +7,9 @@ This tutorial consists of 3 parts:
 
 1. Explore different explainers on different motif-datasets and compare them to the ground-truth motif
 
-2. Challenge: Given a trained GNN on a graph and some explainers, find out, what nodes in the graph are in the classes 0,1,2 (Class 3 is the class of all other nodes).
+2. Challenge: Given a trained inductive GNN on a motif-dataset, reconstruct the original motif.
 
-3. Challenge: Given a trained inductive GNN on a motif-dataset, reconstruct the original motif.
+3. Experiment: Here you can create simple Class Expressions and calculate fidelity of this CE, as well as the GNN-Output of the corresponding graphs.
 
 ## Initialization
 
@@ -45,26 +45,18 @@ You find the visualizations in the `content/plots_explainers` folder. Remark: Th
 
 
 
-## 2. Challenge: Find a logical explanation for each class.
-
+<!-- ## 2. Challenge: Find a logical explanation for each class.
 !!! Here we have a badly trained GNN, hence our explainers are pretty useless.
-
 Goal: Find the rules, after which the classes 0-3 are made up. Class 4 summarizes all nodes, which don't follow the rules for the other classes.
-
 Open by running the `./find_dataset.sh` file. 
-
 Settings:
-
 1. `new_dataset="False"` Set for True, if a new dataset should be created, following the same rules. Then, also a new GNN is trained, which takes a bit of time.
-
 2. `label_to_explain=1` Set to any integer from 0 to 3 to retain explanations for this labels
-
 3. `explainers_to_test="['gnnex', 'gcam', 'subx', 'pgex']"` Choose a list if explainers here, which subgraph-explanations you want to visualize.
+You find the visualizations in the `content_fds/plots_explainers` folder. Remark: This deletes itself each time the code is called. -->
 
-You find the visualizations in the `content_fds/plots_explainers` folder. Remark: This deletes itself each time the code is called.
 
-
-## 3. Challenge: Generate the Input-Data, which maximize the GNN
+## 2. Challenge: Generate the Input-Data, which maximize the GNN
 
 #### Main Goal: For a pre-trained GNN, create input-data, which maximize the GNN. 
 #### Intermediate Goal: The GNN learned to classify nodes, whether they are in a particular motif or not. Find the motif would be a first step towards the main goal.
@@ -79,14 +71,14 @@ How to create input-data:
 
 Competition: The GNN gives feedback for a node being in the motif as a real number. This feedback is summed up and the person wins, who's graph gives the highest feedback.
 
-## 4. Challenge: Explore Class Expressions to find graphs of high fidelity for a heterogeneous BAShapes (Houses) Dataset
+## 3. Explore Class Expressions to find graphs of high fidelity for a heterogeneous BAShapes (Houses) Dataset
 
-Caution: Here you need to activate a new virtual environment, called `hot2` in the VM, using `source hot2/bin/activate` at the root directory and again navigate to your copied folder.
+Caution: Here you need to activate a new virtual environment in the root directory, called `hot2` in the VM, using `source hot2/bin/activate` and again navigate to your copied folder.
 
-To start, run `run_ce_expl.sh`, which links to the code on 'ce_gain.py'.
+To start, run `run_ce_expl.sh`, which links to the code 'ce_gain.py'.
 
-This code uses a dataset, which is a heterogeneous version of the BAShapes House dataset. Nodetypes are `'1'`, `'2'`, `'3'` for nodes in the house motifs from bottom to top and `0` for other nodes. All edgetypes are `'to'`
+This code uses a dataset, which is a heterogeneous version of the BAShapes House dataset. Nodetypes are `'1'`, `'2'`, `'3'` for nodes in the house motifs from bottom to top and `0` for other nodes. All edgetypes are `'to'`. 
 
-Here, the aim is to create a class expression, which uses logical AND, ClassExpression, and ObjectProperty. This means, you can create instances of a class and connect these instances by edges (a.k.a. object properties). This is done in a tree-like format as a list `[class, [child1], [child2]]`. The features of all nodes are set to `1`, just like in the original dataset.
+Here, the aim is to create a class expression, which uses logical AND, ClassExpression, and ObjectProperty. This means, you can create instances of a class and connect these instances by edges (a.k.a. object properties). This is done in a tree-like format as a list `[class, [child1], [child2]]`. The features of all nodes are set to `1`, just like in the original dataset. Keep attention, that you write the entries as strings, i.e. write `'1'` for class 1, instead of `1`.
 
 If you want this to be a competition, try to find a CE which creates a graph which maximizes the fidelity on the dataset.
