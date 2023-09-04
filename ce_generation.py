@@ -7,12 +7,10 @@ import torch
 #import generatingXgraphs
 
 
-from ontolearn.concept_learner import CELOE
 from ontolearn.model_adapter import ModelAdapter
 from owlapy.model import OWLNamedIndividual, IRI
 from owlapy.namespaces import Namespaces
 from owlapy.render import DLSyntaxObjectRenderer
-from examples.experiments_standard import ClosedWorld_ReasonerFactory
 from owlapy.model import OWLObjectProperty, OWLObjectSomeValuesFrom
 from owlapy.model import OWLDataProperty
 from owlapy.model import OWLClass, OWLClassExpression

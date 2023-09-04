@@ -75,6 +75,7 @@ if new_dataset == True:
 else:
     with open("content/datasets_ShapeGGen/datasets_"+str(dataset_of_choice)+".pickle", "rb") as file:
         dataset = pickle.load(file)
+        
 
 
 # Train a model from scratch on the data:
