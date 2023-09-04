@@ -81,7 +81,7 @@ Competition: The GNN gives feedback for a node being in the motif as a real numb
 
 ## 4. Challenge: Explore Class Expressions to find graphs of high fidelity for a heterogeneous BAShapes (Houses) Dataset
 
-Caution: Here you need to activate a new virtual environment, called `hot2` in the VM.
+Caution: Here you need to activate a new virtual environment, called `hot2` in the VM, using `source hot2/bin/activate` at the root directory and again navigate to your copied folder.
 
 To start, run `run_ce_expl.sh`, which links to the code on 'ce_gain.py'.
 
