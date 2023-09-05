@@ -118,6 +118,7 @@ pred = modelHeteroBSM(hd.x_dict, hd.edge_index_dict)
 gnn_out_on_hd = round(pred[-1][1].item(), 2)
 visualize_heterodata(hd, ce = dlsr.render(ce_to_test), gnnout = gnn_out_on_hd, list_all_nodetypes = hd.node_types, add_out = 'fidelity: '+str(fidelity), name_folder = 'content_hetero/plots_hetero')
 
+print('Evaluated the Class Expression', dlsr.render(ce_to_test))
 print('Graph has GNN-out of ', gnn_out_on_hd)
 print('CE has a Fidelity of ', fidelity)
 # call with hd, addname = '', ce = None, gnnout = None, mean_acc = None, add_out = None, list_all_nodetypes = None, label_to_explain = None, name_folder = ''
