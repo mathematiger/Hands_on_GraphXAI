@@ -13,15 +13,14 @@ This tutorial consists of 3 parts:
 
 ## Initialization
 
-1. Use the `requirements.txt` file, to create a virtual python 3.8 environment
+1. Use the `requirements.txt` file, to create a virtual 'python 3.8' environment
 
 2. For using the provided Jupyterhub: you may need to run `chmod +x find_motif.sh` for every shell to obtain permission using them.
 
 ## Using the Virtual Machine:
-It is possible to use the virtual machine, set up at `http://131.234.28.100/jupyter` for this workshop. 
-Username: `upb` Password: `UPBGAIN23`
+<!-- It is possible to use the virtual machine, set up at `http://131.234.28.100/jupyter` for this workshop.  Username: `upb` Password: `UPBGAIN23` -->
 
-Additionally: `http://131.234.28.114/jupyter` or `http://131.234.28.241/jupyter` or `http://131.234.28.209/jupyter` with user `upb` and password `hot23`
+Jupyterhubs are ready at `http://131.234.28.114/jupyter` or `http://131.234.28.241/jupyter` or `http://131.234.28.209/jupyter` with user `upb` and password `hot23`.
 
 
 Follow the following steps, in order that everybody can use the VM:
