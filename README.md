@@ -21,6 +21,9 @@ This tutorial consists of 3 parts:
 It is possible to use the virtual machine, set up at `http://131.234.28.100/jupyter` for this workshop. 
 Username: `upb` Password: `UPBGAIN23`
 
+Additionally: `http://131.234.28.114/jupyter` or `http://131.234.28.241/jupyter` or `http://131.234.28.209/jupyter` with user `upb` and password `hot23`
+
+
 Follow the following steps, in order that everybody can use the VM:
 
 1. Navigate to the folder `/Documents/GraphXAI/`
