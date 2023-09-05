@@ -21,6 +21,9 @@ This tutorial consists of 3 parts:
 It is possible to use the virtual machine, set up at `http://131.234.28.100/jupyter` for this workshop. 
 Username: `upb` Password: `UPBGAIN23`
 
+Additionally: `http://131.234.28.114/jupyter` or `http://131.234.28.241/jupyter` or `http://131.234.28.209/jupyter` with user `upb` and password `hot23`
+
+
 Follow the following steps, in order that everybody can use the VM:
 
 1. Navigate to the folder `/Documents/GraphXAI/`
@@ -61,7 +64,7 @@ Competition: The GNN gives feedback for a node being in the motif as a real numb
 
 ## 3. Explore Class Expressions to find graphs of high fidelity for a heterogeneous BAShapes (Houses) Dataset
 
-Caution: Here you need to activate a new virtual environment in the root directory, called `hot2` in the VM, using `source hot2/bin/activate` and again navigate to your copied folder.
+Caution: Here you need to activate a new virtual environment in the root directory, called `hot2` in the VM, using `source hot2/bin/activate` and again navigate to your copied folder. The install requirements for pip are found in the `requirementshot2.txt` file.
 
 To start, run `run_ce_expl.sh`, which links to the code 'ce_gain.py'.
 
