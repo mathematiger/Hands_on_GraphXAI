@@ -76,3 +76,14 @@ Here, the aim is to create a class expression, which uses logical AND, ClassExpr
 If you want this to be a competition, try to find a CE which creates a graph which maximizes the fidelity on the dataset.
 
 #### Research Question: Do CEs which lead to graphs with higher GNN-output also have a higher fidelity?
+
+
+## 2. Explore the Infectious Dataset from Faber et al. 21
+
+This is sadly really badly implemented and not all explainers work !!
+
+In this dataset, some points are randomly chosen to be contagious. The class of the nodes depends on the distance to these contagious nodes, with the highest class bundling all left-over nodes. 
+
+Run the dataset by `./find_dataset.sh` and find the files in `content_fds/plots_explainers`. The code is found in the file `fds.py`. 
+
+It may be, that you need to install mlflow. 
