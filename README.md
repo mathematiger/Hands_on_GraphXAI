@@ -78,7 +78,7 @@ If you want this to be a competition, try to find a CE which creates a graph whi
 #### Research Question: Do CEs which lead to graphs with higher GNN-output also have a higher fidelity?
 
 
-## 2. Explore the Infectious Dataset from Faber et al. 21
+## 4. Explore the Infectious Dataset from Faber et al. 21
 
 This is sadly really badly implemented and not all explainers work !!
 
