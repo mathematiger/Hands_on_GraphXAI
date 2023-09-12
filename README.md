@@ -1,5 +1,5 @@
 # Hands_on_GraphXAI
-A hands-on tutorial on explainability of graph neural networks, for the Hands-on Workshop at GAIN in Kassel, 06.-08.09. The code is mostly based on `https://github.com/mims-harvard/GraphXAI`. The slides for this tutorial are `GAIN_23_09.pdf`.
+A hands-on tutorial on explainability of graph neural networks, for the Hands-on Workshop at GAIN in Kassel, 06.-08.09. The code is mostly based on `https://github.com/mims-harvard/GraphXAI`. The slides for this tutorial are `GAIN_23_09.pdf`, including a number of references.
 
 ## Overview
 
@@ -18,7 +18,7 @@ This tutorial consists of 3 parts:
 2. For using the provided Jupyterhub: you may need to run `chmod +x find_motif.sh` for every shell to obtain permission using them.
 
 ## Using the Virtual Machine:
-It is possible to use the virtual machine, set up at `http://131.234.28.100/jupyter` for this workshop.  Username: `upb` Password: `UPBGAIN23`.
+It is possible to use the virtual machine, set up at `http://131.234.28.100/jupyter` for this workshop.  Username: `upb` Password: `UPBGAIN23`. This virtual machine stays open during my time at the University of Paderborn. Please do NOT delete any files and contact me if any issues occur.
 
 
 Jupyterlabs are ready at `http://131.234.28.114/jupyter` or `http://131.234.28.241/jupyter` or `http://131.234.28.209/jupyter` with user `upb` and password `hot23`. The last 3 VMs will be shut down soon!
